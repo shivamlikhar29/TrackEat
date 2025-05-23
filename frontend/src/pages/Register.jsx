@@ -1,36 +1,27 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { registerUser } from "../api/auth";
 
 function Register() {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");      // changed from name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password2, setPassword2] = useState("");    // changed from confirmPassword
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (password !== password2) {
       alert("Passwords do not match!");
       return;
     }
 
-    const userData = { name, email, password };
-
     try {
-      const res = await axios.post(" ", userData, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
+      const res = await registerUser({ username, email, password, password2 });  // send all fields
       console.log("Registered successfully:", res.data);
-       alert("You are registered successfully!");
-
+      alert("You are registered successfully!");
       // Navigate or show success message
-
     } catch (error) {
       if (error.response) {
         console.error("Register error:", error.response.data);
@@ -47,13 +38,13 @@ function Register() {
       <Navbar />
       <form onSubmit={handleRegister}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="username">Username</label>  {/* changed label */}
           <input
-            id="name"
+            id="username"
             type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            placeholder="Enter your username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </div>
@@ -83,13 +74,13 @@ function Register() {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="password2">Confirm Password</label>  {/* changed label and id */}
           <input
-            id="confirmPassword"
+            id="password2"
             type="password"
             placeholder="Re-enter your password"
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
+            value={password2}
+            onChange={e => setPassword2(e.target.value)}
             required
           />
         </div>
@@ -98,8 +89,7 @@ function Register() {
       </form>
 
       <p style={{ marginTop: "1rem" }}>
-        Already have an account?{" "}
-        <Link to="/login">Login here</Link>
+        Already have an account? <Link to="/login">Login here</Link>
       </p>
     </div>
   );

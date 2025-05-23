@@ -1,31 +1,23 @@
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import React from "react";
+import { loginUser } from "../api/auth";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");  // changed from email
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const loginData = { email, password };
-
+     console.log("Username:", username, "Password:", password);
+    
     try {
-      const res = await axios.post(" ", loginData, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
+      const res = await loginUser({ username, password });  // send username now
       console.log("Login successful:", res.data);
-       alert("You are logged in successfully!");
-
+      alert("You are logged in successfully!");
       localStorage.setItem("token", res.data.token);
-      // You can navigate to a dashboard or another page here
-
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      // Navigate to dashboard or another page
     } catch (error) {
       if (error.response) {
         console.error("Login error:", error.response.data);
@@ -42,13 +34,13 @@ function Login() {
       <Navbar />
       <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Username</label>  
           <input
-            id="email"
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            id="username"
+            type="text"     
+            placeholder="Enter your username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </div>
@@ -69,8 +61,7 @@ function Login() {
       </form>
 
       <p style={{ marginTop: "1rem" }}>
-        Don't have an account?{" "}
-        <Link to="/register">Register here</Link>
+        Don't have an account? <Link to="/register">Register here</Link>
       </p>
     </div>
   );
