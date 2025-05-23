@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { loginUser } from "../api/auth";
 
@@ -31,7 +30,7 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+    
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username</label>  
