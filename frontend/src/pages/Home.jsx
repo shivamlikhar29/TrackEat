@@ -1,11 +1,17 @@
-import Navbar from "../components/Navbar";
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div>
-      <Navbar />
-      <h1>Welcome to Track Eat!</h1>
+
+      <h1>Track.improve.Thrive.</h1>
+      <button onClick={() => navigate('/register')}>Register</button>
+      <button onClick={() => navigate('/login')}>Login</button>
+      
+
     </div>
   );
 }
