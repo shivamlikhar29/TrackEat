@@ -14,9 +14,9 @@ function App() {
     <Router>
       <Routes>
         
-        <Route path="/" element={token ? <Navigate to="/dashboard" /> : <Home />} />
-        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/register" element={token ? <Navigate to="/dashboard" /> : <Register />} />
+        <Route path="/" element={token ? <Navigate to="/dashboard" replace/> : <Home />} />
+        <Route path="/login" element={token ? <Navigate to="/dashboard" replace/> : <Login />} />
+        <Route path="/register" element={token ? <Navigate to="/dashboard" replace/> : <Register />} />
         <Route
           path="/dashboard"
           element={
