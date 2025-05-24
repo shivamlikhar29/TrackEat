@@ -61,7 +61,7 @@ function Login() {
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button className="border-2" type="submit">Login</button>
       </form>
 
       <p style={{ marginTop: "1rem" }}>
