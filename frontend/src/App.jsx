@@ -1,6 +1,5 @@
-// src/App.js
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -8,26 +7,26 @@ import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true); // ⏳ Add loading state
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const location = useLocation();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
-    setLoading(false); // ✅ Done loading
+    const syncToken = () => setToken(localStorage.getItem("token"));
+    window.addEventListener("storage", syncToken);
+    return () => window.removeEventListener("storage", syncToken);
   }, []);
 
-  if (loading) return <div>Loading...</div>; // ✅ Prevents early redirect
+  useEffect(() => {
+    setToken(localStorage.getItem("token")); // re-check token on route change
+  }, [location]);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={token ? <Navigate to="/dashboard" replace /> : <Home />} />
-        <Route path="/login" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
-        <Route path="/register" element={token ? <Navigate to="/dashboard" replace /> : <Register />} />
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={token ? <Navigate to="/dashboard" replace /> : <Home />} />
+      <Route path="/login" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
+      <Route path="/register" element={token ? <Navigate to="/dashboard" replace /> : <Register />} />
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+    </Routes>
   );
 }
 

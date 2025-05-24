@@ -1,20 +1,18 @@
-// src/components/LogoutButton.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function LogoutButton() {
+const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // remove token
-    navigate("/"); // go back to home
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
+
+    // ✅ Safe redirect to Home
+    navigate("/", { replace: true });
   };
 
-  return (
-    <button onClick={handleLogout}>
-      Logout
-    </button>
-  );
-}
+  return <button onClick={handleLogout}>Logout</button>;
+};
 
 export default LogoutButton;
