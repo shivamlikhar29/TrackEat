@@ -1,13 +1,14 @@
-// src/components/LogoutButton.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-function LogoutButton() {
+const LogoutButton = () => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // remove token
-    navigate("/"); // go back to home
+    logout();
+    navigate("/", { replace: true });
   };
 
   return (
@@ -15,6 +16,6 @@ function LogoutButton() {
       Logout
     </button>
   );
-}
+};
 
 export default LogoutButton;

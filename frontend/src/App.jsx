@@ -1,32 +1,35 @@
-// src/App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./components/context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./pages/Dashboard"; // will handle nested routes
+import Navbar from "./components/components/Navbar";
+import ProtectedRoute from "./components/components/ProtectedRoute";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const { isAuthenticated } = useAuth();
 
   return (
-    <Router>
+    <>
+      {isAuthenticated && <Navbar />}
       <Routes>
-        
-        <Route path="/" element={token ? <Navigate to="/dashboard" replace/> : <Home />} />
-        <Route path="/login" element={token ? <Navigate to="/dashboard" replace/> : <Login />} />
-        <Route path="/register" element={token ? <Navigate to="/dashboard" replace/> : <Register />} />
+        <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Home />} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
+        <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />} />
+
+        {/* Dashboard will handle its own sub-routes */}
         <Route
-          path="/dashboard"
+          path="/dashboard/*"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <Dashboard />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
       </Routes>
-    </Router>
+    </>
   );
 }
 
