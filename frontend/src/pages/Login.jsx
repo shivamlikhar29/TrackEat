@@ -35,38 +35,59 @@ function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="username">Username</label>
+   <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          Login to Your Account
+        </h2>
+{/* changes baki hai */}
+        <div className="mb-4">
+          <label htmlFor="username" className="block text-gray-700 mb-1">
+            Username
+          </label>
           <input
             id="username"
             type="text"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your username"
             value={username}
-            onChange={e => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="mb-6">
+          <label htmlFor="password" className="block text-gray-700 mb-1">
+            Password
+          </label>
           <input
             id="password"
             type="password"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
+{/* set mail bana hai */}
+        <button
+          type="submit"
+          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+        >
+          Login
+        </button>
 
-        <button className="border-2" type="submit">Login</button>
+        <p className="mt-4 text-center text-gray-600">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Register here
+          </Link>
+        </p>
       </form>
-
-      <p style={{ marginTop: "1rem" }}>
-        Don't have an account? <Link to="/register">Register here</Link>
-      </p>
     </div>
   );
 }

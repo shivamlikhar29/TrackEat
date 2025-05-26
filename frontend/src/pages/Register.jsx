@@ -39,64 +39,91 @@ function Register() {
       }
     }
   };
-
+// setmail usestate lagana hai 
   return (
-    <div>
-      <form onSubmit={handleRegister}>
-        <div>
-          <label htmlFor="username">Username</label>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <form
+        onSubmit={handleRegister} 
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          Create an Account
+        </h2>
+
+        <div className="mb-4">
+          <label htmlFor="username" className="block mb-1 text-gray-700">
+            Username
+          </label>
           <input
             id="username"
             type="text"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your username"
             value={username}
-            onChange={e => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="mb-4">
+          <label htmlFor="email" className="block mb-1 text-gray-700">
+            Email
+          </label>
           <input
             id="email"
             type="email"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="mb-6">
+          <label htmlFor="password" className="block mb-1 text-gray-700">
+            Password
+          </label>
           <input
             id="password"
             type="password"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-
-        <div>
-          <label htmlFor="password2">Confirm Password</label>
+{/* re enter password section hai teh wala */}
+         <div className="mb-6">
+          <label htmlFor="password" className="block mb-1 text-gray-700">
+            Confirm Password
+          </label>
           <input
             id="password2"
             type="password"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Re-enter your password"
             value={password2}
-            onChange={e => setPassword2(e.target.value)}
+            onChange={(e) => setPassword2(e.target.value)}
             required
           />
         </div>
 
-        <button type="submit">Register</button>
-      </form>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Register
+        </button>
 
-      <p style={{ marginTop: "1rem" }}>
-        Already have an account? <Link to="/login">Login here</Link>
-      </p>
+        <p className="mt-4 text-center text-gray-600">
+          Already have an account?{' '}
+          <Link to="/login" className="text-green-600 hover:underline">
+            Login here
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }
