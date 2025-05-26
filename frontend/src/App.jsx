@@ -5,6 +5,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import Explore from "./components/Explore";
+import FatCalculator from "./components/Tools/FatCalculater/FatCalculater";
+import FatCalculatorResult from "./components/Tools/FatCalculater/FatCalculaterResult";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -26,7 +29,11 @@ function App() {
       <Route path="/login" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
       <Route path="/register" element={token ? <Navigate to="/dashboard" replace /> : <Register />} />
       <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <Route path="/explore" element={<Explore/>}/>
+      <Route path="/FatCalculater" element={<FatCalculator/>}/>
+      <Route path="/FatCalculateResult" element={<FatCalculatorResult/>}/>
     </Routes>
+    
   );
 }
 
