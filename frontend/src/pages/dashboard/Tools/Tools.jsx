@@ -7,7 +7,7 @@ const Tools = () => {
       
 
       {/* Section 1: Core Tools */}
-      <h3> Meal Log</h3>
+      <h3> Tools</h3>
       <ul>
         <li><Link to="meal-log">Meal Log</Link></li>
         <li><Link to="bmi">BMI Calculator</Link></li>
