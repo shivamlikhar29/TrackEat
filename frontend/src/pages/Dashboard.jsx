@@ -1,12 +1,28 @@
-// src/pages/Dashboard.jsx
 import React from "react";
-import LogoutButton from "../components/LogoutButton";
+import { Routes, Route } from "react-router-dom";
+import UserProfileForm from "./dashboard/UserProfileForm";
+import Tools from "./dashboard/Tools/Tools";
+import BmiCalculator from "./dashboard/Tools/BmiCalculator";
+import FatCalculator from "./dashboard/Tools/FatCalculator";
+import BmiResult from "./dashboard/Tools/BmiResult";
+import FatResult from "./dashboard/Tools/FatResult";
 
 function Dashboard() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-center p-6">
-      <h2 className="bg-blue-500 p-5 rounded font-semibold">Welcome to your Dashboard!</h2>
-      <LogoutButton />
+    <div>
+      <Routes>
+        {/* User Profile */}
+        <Route path="user-profile" element={<UserProfileForm />} />
+
+        {/* Tools main page with links */}
+        <Route path="tools" element={<Tools />} />
+
+        {/* Separate pages for calculators and results */}
+        <Route path="tools/bmi" element={<BmiCalculator />} />
+        <Route path="tools/bmi-result" element={<BmiResult />} />
+        <Route path="tools/fat-calculator" element={<FatCalculator />} />
+        <Route path="tools/fat-result" element={<FatResult />} />
+      </Routes>
     </div>
   );
 }
