@@ -29,6 +29,10 @@ function Login() {
   };
 
   return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef13c636a8da9de001c4860d5d9643ac61debf62
     <form onSubmit={handleLogin}>
       <h2>Login to Your Account</h2>
 
@@ -61,6 +65,10 @@ function Login() {
         Don't have an account? <Link to="/register">Register here</Link>
       </p>
     </form>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef13c636a8da9de001c4860d5d9643ac61debf62
   );
 }
 

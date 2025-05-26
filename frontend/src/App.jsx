@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./components/context/AuthContext";
@@ -9,6 +11,7 @@ import Navbar from "./components/components/Navbar";
 import ProtectedRoute from "./components/components/ProtectedRoute";
 
 function App() {
+
   const { isAuthenticated } = useAuth();
 
   return (
