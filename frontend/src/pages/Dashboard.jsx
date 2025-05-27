@@ -7,6 +7,7 @@ import FatCalculator from "./dashboard/Tools/FatCalculator";
 import BmiResult from "./dashboard/Tools/BmiResult";
 import Explore from "./dashboard/Explore";
 import FatResult from "./dashboard/Tools/FatResult";
+import MealLogger from "./dashboard/Tools/MealLogger";
 
 function Dashboard() {
   return (
@@ -23,6 +24,8 @@ function Dashboard() {
         <Route path="tools/bmi-result" element={<BmiResult />} />
         <Route path="tools/fat-calculator" element={<FatCalculator />} />
         <Route path="tools/fat-result" element={<FatResult />} />
+         <Route path="tools/meal-log" element={<MealLogger />} />
+
 
         <Route path="explore" element={<Explore/>} />
       </Routes>
