@@ -12,6 +12,7 @@ const Tools = () => {
         <li><Link to="meal-log">Meal Log</Link></li>
         <li><Link to="bmi">BMI Calculator</Link></li>
         <li><Link to="fat-calculator">Fat Calculator</Link></li>
+        <li><Link to="nutrition-search">Nutrition Search</Link></li>
       </ul>
 
       <hr />
