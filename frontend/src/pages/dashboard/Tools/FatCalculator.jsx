@@ -23,7 +23,7 @@ const FatCalculator = () => {
    const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/fat-Result'); // Replace with your target route
+    navigate('/fat-result'); // Replace with your target route
   };
 
   return (

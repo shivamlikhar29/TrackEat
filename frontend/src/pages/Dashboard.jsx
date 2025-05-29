@@ -27,7 +27,7 @@ function Dashboard() {
         <Route path="tools/bmi" element={<BmiCalculator />} />
         <Route path="tools/bmi-result" element={<BmiResult />} />
         <Route path="tools/fat-calculator" element={<FatCalculator />} />
-        <Route path="tools/fat-result" element={<FatResult />} />
+        <Route path="fat-result" element={<FatResult />} />
          <Route path="tools/meal-log" element={<MealLogger />} />
            <Route path="tools/nutrition-search" element={<NutritionSearch />} />
            <Route path="tools/weight-tracker" element={<WeightTracker />} />

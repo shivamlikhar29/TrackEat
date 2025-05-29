@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const FatCalculatorResult = ({ fat, setFat }) => {
+const FatResult = ({ fat, setFat }) => {
 
 //    const NavigateButton = () => {
  
@@ -67,4 +67,4 @@ const FatCalculatorResult = ({ fat, setFat }) => {
   );
 };
 
-export default FatCalculatorResult;
+export default FatResult;
