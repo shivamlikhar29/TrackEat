@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard"; // will handle nested routes
 import Navbar from "./components/components/Navbar";
 import ProtectedRoute from "./components/components/ProtectedRoute";
+import Chatbot from "./components/components/Chatbot";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           }
         />
       </Routes>
+      {isAuthenticated && <Chatbot/>}
     </>
   );
 }
